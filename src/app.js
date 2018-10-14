@@ -32,6 +32,7 @@ StringRepository.ReadRandom(10000)
 
 Client.on('ready', () => {
   console.log("Ready");
+  console.log(process.env.markov);
 });
 
 Client.on('message', msg => {
@@ -39,7 +40,7 @@ Client.on('message', msg => {
 
   MarkovService.Consider(msg.content)
    .then(res => res != null ? msg.channel.send(res.string) : null)
-   .catch(err => msg.channel.send(dump(err)));
+   .catch(err => (dump(err)));
 });
 
 
