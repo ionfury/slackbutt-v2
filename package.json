@@ -2,7 +2,7 @@
   "name": "slackbutt-v2",
   "version": "1.0.0",
   "description": "A new version of slackbutt",
-  "main": "app.js",
+  "main": "src/app.js",
   "scripts": {
     "test": "test"
   },
@@ -19,5 +19,11 @@
   "bugs": {
     "url": "https://github.com/ionfury/slackbutt-v2/issues"
   },
-  "homepage": "https://github.com/ionfury/slackbutt-v2#readme"
+  "homepage": "https://github.com/ionfury/slackbutt-v2#readme",
+  "dependencies": {
+    "bluebird": "^3.5.2",
+    "discord.js": "^11.4.2",
+    "mocha": "^5.2.0",
+    "mongodb": "^3.1.8"
+  }
 }
