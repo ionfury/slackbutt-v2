@@ -1,0 +1,14 @@
+{
+  "botname": "slackbutt",
+  "responsechance": 99,
+  "longresponsechance": 40,
+  "markovDefaultOptions": 
+  {
+    "maxLength": 1000,
+    "minWords": 5,
+    "minScore": 25,
+    "stateSize": 2,
+    "minScorePerWord": 2,
+    "maxTries": 10000
+  }
+}
