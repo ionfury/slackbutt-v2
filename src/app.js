@@ -25,7 +25,7 @@ function BuildMarkov(strings) {
   return markov;
 }
 
-StringRepository.ReadRandom(10000)
+StringRepository.ReadAll()
   .then(res => ExtractStrings(res))
   .then(res => BuildMarkov(res))
   .then(res => markovClient = res)
@@ -42,11 +42,14 @@ Client.on('message', msg => {
   console.log('msg');
   //console.log(markovClient)
   MarkovService.Consider(msg.content,markovClient)
-   .then(res => res != null ? msg.channel.send(res.string) : null)
+   .then(res => res != null ? msg.channel.send(log(res)) : null)
    .catch(err => (dump(err)));
 });
 
-
+function log(msg) {
+  console.log(msg);
+  return msg.string;
+}
 
 function dump(err) {
   console.log(err.stack);
