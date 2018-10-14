@@ -1,0 +1,23 @@
+{
+  "name": "slackbutt-v2",
+  "version": "1.0.0",
+  "description": "A new version of slackbutt",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ionfury/slackbutt-v2.git"
+  },
+  "keywords": [
+    "markov",
+    "discord"
+  ],
+  "author": "ionfury@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ionfury/slackbutt-v2/issues"
+  },
+  "homepage": "https://github.com/ionfury/slackbutt-v2#readme"
+}
