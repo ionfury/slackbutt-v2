@@ -5,7 +5,7 @@ const Config = require ('../../config.json');
 
 module.exports = {
   Consider : (input, markovClient) => {
-    console.log(markovClient);
+    //console.log(markovClient);
     return StringRepository.Write(input)
       .then(res => ShouldRespond(input))
       //.then(res => res ? StringRepository.ReadRandom(500) : () => [])
