@@ -22,9 +22,11 @@ function BuildMarkov(strings) {
   return markov;
 }
 
-process.env.Markov = await StringRepository.ReadAll()
+await StringRepository.ReadAll()
   .then(res => ExtractStrings(res))
   .then(res => BuildMarkov(res))
+  .then(res => process.env.markov = res)
+  .then(res => Client.login(process.env.token));
 
 
 Client.on('ready', () => {
@@ -39,7 +41,7 @@ Client.on('message', msg => {
    .catch(err => msg.channel.send(dump(err)));
 });
 
-Client.login(process.env.token);
+
 
 function dump(err) {
   console.log(err.stack);
