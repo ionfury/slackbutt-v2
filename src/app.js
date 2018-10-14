@@ -15,10 +15,11 @@ function ExtractStrings(arr) {
 function BuildMarkov(strings) {
   console.log(`build markov`);
   if(!strings) return null;
-  console.log(strings);
 
   let markov = new Markov(strings, Config.markovDefaultOptions);
+  console.log('building corpus...');
   markov.buildCorpus();
+  console.log('corpus built')
   return markov;
 }
 
