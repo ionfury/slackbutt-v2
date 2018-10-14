@@ -8,7 +8,7 @@
     "minWords": 5,
     "minScore": 20,
     "stateSize": 2,
-    "minScorePerWord": 1,
+    "minScorePerWord": 3,
     "maxTries": 1000
   },
   "db": "slackbutt-prod"
