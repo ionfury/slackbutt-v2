@@ -3,7 +3,7 @@ const Client = new Discord.Client();
 const Promise = require('bluebird');
 const MarkovService = require('./services/markov-service');
 const StringRepository = require ('./repositories/string-repository.js');
-const Config = require('config.json');
+const Config = require('../config.json');
 const Markov = require('markov-strings');
 
 function ExtractStrings(arr) {
