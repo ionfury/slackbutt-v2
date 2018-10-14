@@ -40,7 +40,7 @@ Client.on('ready', () => {
 Client.on('message', msg => {
   if(msg.author.bot) return;
   console.log('msg');
-  console.log(markovClient)
+  //console.log(markovClient)
   MarkovService.Consider(msg.content,markovClient)
    .then(res => res != null ? msg.channel.send(res.string) : null)
    .catch(err => (dump(err)));
