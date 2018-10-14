@@ -3,6 +3,7 @@ let Promise = require('bluebird');
 
 Promise.promisifyAll(MongoClient);
 
+const db = Config.db;
 const col = 'strings';
 
 
@@ -15,33 +16,27 @@ function GetMongoConnection() {
 
 module.exports = {
   Write: (string) => {
-    let db = process.env.db;
-
     return new Promise.using(GetMongoConnection(), conn => {
       let value = { string: string };
       return conn.db(db).collection(col).insertOne(value);
     });
   },
   ReadRandom: (n) => {
-    let db = process.env.db;
     return new Promise.using(GetMongoConnection(), conn => {
       return conn.db(db).collection(col).aggregate( [ { $sample: {size: 5000} } ] ) .toArray();
     });
   },
   ReadAll: () => {
-    let db = process.env.db;
     return new Promise.using(GetMongoConnection(), conn => {
       return conn.db(db).collection(col).find().toArray();
     });
   },
   Remove: (string) => {
-    let db = process.env.db;
     return new Promise.using(GetMongoConnection(), conn => {
       return conn.db(db).collection(col).deleteMany({ string : string });
     });
   },
   Exists: (string) => {
-    let db = process.env.db;
     return new Promise.using(GetMongoConnection(), conn => {
       return conn.db(db).collection(col).findOne({ string : string });
     });
