@@ -10,7 +10,6 @@ Client.on('message', msg => {
   if(msg.author.bot) return;
 
   MarkovService.Consider(msg.content)
-    //.then(console.log)
    .then(res => res != null ? msg.channel.send(res.string) : null)
    .catch(err => msg.channel.send(dump(err)));
 });
