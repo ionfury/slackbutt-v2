@@ -22,7 +22,7 @@ function BuildMarkov(strings) {
   return markov;
 }
 
-StringRepository.ReadAll()
+StringRepository.ReadRandom(10000)
   .then(res => ExtractStrings(res))
   .then(res => BuildMarkov(res))
   .then(res => process.env.markov = res)
@@ -30,7 +30,7 @@ StringRepository.ReadAll()
 
 
 Client.on('ready', () => {
-  
+  console.log("Ready");
 });
 
 Client.on('message', msg => {
