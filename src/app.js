@@ -6,6 +6,8 @@ const StringRepository = require ('./repositories/string-repository.js');
 const Config = require('../config.json');
 const Markov = require('markov-strings');
 
+global.markovClient;
+
 function ExtractStrings(arr) {
   console.log(`extract`);
   if(!arr.map) return;
@@ -26,19 +28,20 @@ function BuildMarkov(strings) {
 StringRepository.ReadRandom(10000)
   .then(res => ExtractStrings(res))
   .then(res => BuildMarkov(res))
-  .then(res => process.env.markov = res)
+  .then(res => markovClient = res)
   .then(res => Client.login(process.env.token));
 
 
 Client.on('ready', () => {
   console.log("Ready");
-  console.log(process.env.markov);
+  console.log(markovClient);
 });
 
 Client.on('message', msg => {
   if(msg.author.bot) return;
-
-  MarkovService.Consider(msg.content)
+  console.log('msg');
+  console.log(markovClient)
+  MarkovService.Consider(msg.content,markovClient)
    .then(res => res != null ? msg.channel.send(res.string) : null)
    .catch(err => (dump(err)));
 });
