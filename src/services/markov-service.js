@@ -1,32 +1,17 @@
 const Promise = require('bluebird');
 const StringRepository = require ('../repositories/string-repository.js');
 const Config = require ('../../config.json');
-const Markov = require('markov-strings');
+
 
 module.exports = {
   Consider : (input) => {
     return StringRepository.Write(input)
       .then(res => ShouldRespond(input))
-      .then(res => res ? StringRepository.ReadRandom(50) : () => [])
-      .then(res => ExtractStrings(res))
-      .then(res => BuildMarkov(res))
-      .then(markov => Respond(markov, input))
+      //.then(res => res ? StringRepository.ReadRandom(500) : () => [])
+      //.then(res => ExtractStrings(res))
+      //.then(res => BuildMarkov(res))
+      .then(res => res ? Respond(process.env.markov, input) : null);
   }
-}
-function ExtractStrings(arr) {
-  console.log(`extract`);
-  if(!arr.map) return;
-  return arr.map(a => a.string);
-}
-
-function BuildMarkov(strings) {
-  console.log(`build markov`);
-  if(!strings) return null;
-  console.log(strings);
-
-  let markov = new Markov(strings, Config.markovDefaultOptions);
-  markov.buildCorpus();
-  return markov;
 }
 
 function ShouldRespond(text) {
