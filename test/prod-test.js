@@ -15,8 +15,9 @@ it('prod-test slackbutt', async () => {
 
   process.env.db = "slackbutt-prod";
 
-  var res = await Service.Consider("is a respectable fellow");
+  var res = await Service.Consider("slackbutt is a respectable fellow");
   console.log(res);
+  if(res)
   Expect(res.string).to.a('string');
 
 }).timeout(20000);

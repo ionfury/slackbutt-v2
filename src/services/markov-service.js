@@ -7,14 +7,14 @@ module.exports = {
   Consider : (input) => {
     return StringRepository.Write(input)
       .then(res => ShouldRespond(input))
-      .then(res => res ? StringRepository.ReadRandom(50) : () => null)
+      .then(res => res ? StringRepository.ReadRandom(50) : () => [])
       .then(res => ExtractStrings(res))
       .then(res => BuildMarkov(res))
       .then(markov => Respond(markov, input))
   }
 }
 function ExtractStrings(arr) {
-  if(!arr) return;
+  if(!arr.map) return;
   return arr.map(a => a.string);
 }
 

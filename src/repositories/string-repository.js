@@ -1,5 +1,6 @@
 let MongoClient = require('mongodb').MongoClient;
 let Promise = require('bluebird');
+const Config = require ('../../config.json');
 
 Promise.promisifyAll(MongoClient);
 
