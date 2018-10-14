@@ -22,7 +22,7 @@ function BuildMarkov(strings) {
   return markov;
 }
 
-await StringRepository.ReadAll()
+StringRepository.ReadAll()
   .then(res => ExtractStrings(res))
   .then(res => BuildMarkov(res))
   .then(res => process.env.markov = res)
