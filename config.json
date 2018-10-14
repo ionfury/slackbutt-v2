@@ -6,9 +6,10 @@
   {
     "maxLength": 1000,
     "minWords": 5,
-    "minScore": 25,
+    "minScore": 20,
     "stateSize": 2,
-    "minScorePerWord": 2,
-    "maxTries": 10000
-  }
+    "minScorePerWord": 1,
+    "maxTries": 1000
+  },
+  "db": "slackbutt-prod"
 }

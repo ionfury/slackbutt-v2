@@ -1,23 +1,22 @@
 let Chai = require('chai');
 let Expect = Chai.expect;
 
+var randomWords = require('random-words');
+
+let Service = require('../src/services/markov-service.js');
 let Repo = require('../src/repositories/string-repository.js');
 
 let TestConfig = require('../test-data.json'); 
 
-it('string-repositories should write-exists-remove', async () => {
+it('prod-test slackbutt', async () => {
   process.env.database_username = TestConfig.database_username;
   process.env.database_password = TestConfig.database_password;
   process.env.database_connection_string = TestConfig.database_connection_string;
 
-  process.env.db = "test";
-  
-  let test = '!!test-string!!';
-  await Repo.Write(test);
+  process.env.db = "slackbutt-prod";
 
-  let res = await Repo.Exists(test);
+  var res = await Service.Consider("is a respectable fellow");
+  console.log(res);
+  Expect(res.string).to.a('string');
 
-  Expect(res.string).to.equal(test);
-
-  await Repo.Remove(test);  
-});
+}).timeout(20000);

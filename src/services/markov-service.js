@@ -7,7 +7,7 @@ module.exports = {
   Consider : (input) => {
     return StringRepository.Write(input)
       .then(res => ShouldRespond(input))
-      .then(res => res ? StringRepository.ReadAll() : () => null)
+      .then(res => res ? StringRepository.ReadRandom(50) : () => null)
       .then(res => ExtractStrings(res))
       .then(res => BuildMarkov(res))
       .then(markov => Respond(markov, input))
@@ -20,7 +20,7 @@ function ExtractStrings(arr) {
 
 function BuildMarkov(strings) {
   if(!strings) return null;
-  let markov = new Markov(strings);//, Config.markovDefaultOptions);
+  let markov = new Markov(strings, Config.markovDefaultOptions);
   markov.buildCorpus();
   return markov;
 }
@@ -36,10 +36,16 @@ function ShouldSmartReply() {
 
 function Respond(markov, input) {
   if(!markov) return null;
-  if(ShouldSmartReply()) 
+  try
+  {
+    console.log('smart reply');
     return SmartReply(markov, input);
-  else 
+  }
+  catch
+  {
+    console.log('dumb reply');
     return Reply(markov);
+  }
 }
 
 function SmartReply(markov, input) {
@@ -47,9 +53,9 @@ function SmartReply(markov, input) {
   let smartOptions = {
     filter: (res) => res.string.includes(longestWord)
   }
-  return markov.generateSentence(smartOptions)
+  return markov.generateSentenceSync(smartOptions)
 }
 
 function Reply(markov) {
-  return markov.generateSentence();
+  return markov.generateSentenceSync();
 }
