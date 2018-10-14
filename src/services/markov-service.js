@@ -4,13 +4,13 @@ const Config = require ('../../config.json');
 
 
 module.exports = {
-  Consider : (input) => {
+  Consider : (input, markovClient) => {
     return StringRepository.Write(input)
       .then(res => ShouldRespond(input))
       //.then(res => res ? StringRepository.ReadRandom(500) : () => [])
       //.then(res => ExtractStrings(res))
       //.then(res => BuildMarkov(res))
-      .then(res => res ? Respond(process.env.markov, input) : null);
+      .then(res => res ? Respond(markovClient, input) : null);
   }
 }
 
