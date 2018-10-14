@@ -41,7 +41,7 @@ function Respond(markov, input) {
     console.log('smart reply');
     return SmartReply(markov, input);
   }
-  catch
+  catch (err)
   {
     console.log('dumb reply');
     return Reply(markov);
