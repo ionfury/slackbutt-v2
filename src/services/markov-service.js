@@ -43,6 +43,8 @@ function ShouldSmartReply() {
 function Respond(markov, input) {
   console.log(`respond`);
   if(!markov) return null;
+  return Reply(markov);
+  /*
   try
   {
     console.log('smart');
@@ -53,6 +55,7 @@ function Respond(markov, input) {
     console.log('dumb reply');
     return Reply(markov);
   }
+  */
 }
 
 function SmartReply(markov, input) {
