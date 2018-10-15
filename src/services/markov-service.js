@@ -39,18 +39,23 @@ function Respond(markov, input) {
 }
 
 function SmartReply(markov, input) {  
-  let longestWord = input.replace(Config.botname, '').split(' ').sort((a, b) => a.length - b.length);
+  console.log(`input: ${input}`)
+  let longestWord = input.replace(Config.botname, '');
   
-  console.log(`Longest word: ${longestword}`)
+  console.log(`Step 1: ${longestWord}`);
+  var l = longestWord.split(' ').sort((a, b) => a.length - b.length);
+  
+  console.log(`Longest word: ${l}`);
+
   let smartOptions = {
     maxLength: 0,
     minWords: 5,
     minScore: 10,
     stateSize: 3,
     maxTries: 1000,
-    filter: (res) => res.string.includes(longestWord)
-  }
-  return markov.generateSentenceSync(smartOptions)
+    filter: (res) => res.string.includes(l)
+  };
+  return markov.generateSentenceSync(smartOptions);
 }
 
 function Reply(markov) {
