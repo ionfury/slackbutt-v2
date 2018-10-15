@@ -42,7 +42,8 @@ function Respond(markov, input) {
 }
 
 function SmartReply(markov, input) {  
-  let longestWord = input.split(Config.botname).join('').split(' ').sort((a, b) => a.length - b.length);
+  let longestWord = input.replace(Config.botname, '').sort((a, b) => a.length - b.length);
+  
   console.log(`Longest word: ${longestword}`)
   let smartOptions = {
     maxLength: 0,
