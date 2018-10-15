@@ -4,12 +4,12 @@
   "longresponsechance": 40,
   "markovDefaultOptions": 
   {
-    "maxLength": 1000,
+    "maxLength": 0,
     "minWords": 5,
     "minScore": 20,
-    "stateSize": 2,
+    "stateSize": 3,
     "minScorePerWord": 3,
-    "maxTries": 10000
+    "maxTries": 1000
   },
   "db": "slackbutt-prod"
 }

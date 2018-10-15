@@ -1,32 +1,15 @@
 const Promise = require('bluebird');
 const StringRepository = require ('../repositories/string-repository.js');
 const Config = require ('../../config.json');
-const Markov = require('markov-strings');
+
 
 module.exports = {
-  Consider : (input) => {
+  Consider : (input, markovClient) => {
+    //console.log(markovClient);
     return StringRepository.Write(input)
       .then(res => ShouldRespond(input))
-      .then(res => res ? StringRepository.ReadRandom(50) : () => [])
-      .then(res => ExtractStrings(res))
-      .then(res => BuildMarkov(res))
-      .then(markov => Respond(markov, input))
+      .then(res => res ? Respond(markovClient, input) : null);
   }
-}
-function ExtractStrings(arr) {
-  console.log(`extract`);
-  if(!arr.map) return;
-  return arr.map(a => a.string);
-}
-
-function BuildMarkov(strings) {
-  console.log(`build markov`);
-  if(!strings) return null;
-  console.log(strings);
-
-  let markov = new Markov(strings, Config.markovDefaultOptions);
-  markov.buildCorpus();
-  return markov;
 }
 
 function ShouldRespond(text) {
@@ -55,13 +38,23 @@ function Respond(markov, input) {
   }
 }
 
-function SmartReply(markov, input) {
-  console.log(`smart reply`);
-  let longestWord = input.split(' ').sort((a, b) => a.length - b.length);
+function SmartReply(markov, input) {  
+  console.log(`input: ${input}`)
+  let longestWord = input.replace(Config.botname, '');
+  
+  console.log(`Step 1: ${longestWord}`);
+  var l = longestWord.split(' ').sort((a, b) => b.length - a.length)[0];
+  
+  console.log(`Longest word: ${l}`);
+
   let smartOptions = {
-    filter: (res) => res.string.includes(longestWord)
-  }
-  return markov.generateSentenceSync(smartOptions)
+    maxLength: 0,
+    minWords: 5,
+    minScore: 10,
+    maxTries: 1000,
+    filter: (res) => res.string.includes(l)
+  };
+  return markov.generateSentenceSync(smartOptions);
 }
 
 function Reply(markov) {
