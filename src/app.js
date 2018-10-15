@@ -34,7 +34,6 @@ StringRepository.ReadAll()
 
 Client.on('ready', () => {
   console.log("Ready");
-  console.log(markovClient);
 });
 
 Client.on('message', msg => {
