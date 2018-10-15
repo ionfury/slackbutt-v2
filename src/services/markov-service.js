@@ -51,7 +51,6 @@ function SmartReply(markov, input) {
     maxLength: 0,
     minWords: 5,
     minScore: 10,
-    stateSize: 3,
     maxTries: 1000,
     filter: (res) => res.string.includes(l)
   };
