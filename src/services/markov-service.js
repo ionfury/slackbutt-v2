@@ -41,11 +41,15 @@ function Respond(markov, input) {
   }
 }
 
-function SmartReply(markov, input) {
-  console.log(`smart reply: ${input}`);
-  
+function SmartReply(markov, input) {  
   let longestWord = input.split(Config.botname).join('').split(' ').sort((a, b) => a.length - b.length);
+  console.log(`Longest word: ${longestword}`)
   let smartOptions = {
+    maxLength: 0,
+    minWords: 5,
+    minScore: 10,
+    stateSize: 3,
+    maxTries: 1000,
     filter: (res) => res.string.includes(longestWord)
   }
   return markov.generateSentenceSync(smartOptions)
