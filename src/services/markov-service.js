@@ -8,9 +8,6 @@ module.exports = {
     //console.log(markovClient);
     return StringRepository.Write(input)
       .then(res => ShouldRespond(input))
-      //.then(res => res ? StringRepository.ReadRandom(500) : () => [])
-      //.then(res => ExtractStrings(res))
-      //.then(res => BuildMarkov(res))
       .then(res => res ? Respond(markovClient, input) : null);
   }
 }
@@ -42,7 +39,7 @@ function Respond(markov, input) {
 }
 
 function SmartReply(markov, input) {  
-  let longestWord = input.replace(Config.botname, '').sort((a, b) => a.length - b.length);
+  let longestWord = input.replace(Config.botname, '').split(' ').sort((a, b) => a.length - b.length);
   
   console.log(`Longest word: ${longestword}`)
   let smartOptions = {
