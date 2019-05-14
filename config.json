@@ -7,7 +7,7 @@
     "maxLength": 0,
     "minWords": 5,
     "minScore": 20,
-    "stateSize": 3,
+    "stateSize": 2,
     "minScorePerWord": 3,
     "maxTries": 1000
   },
