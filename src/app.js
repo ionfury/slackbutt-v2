@@ -25,11 +25,8 @@ function BuildMarkov(strings) {
   return markov;
 }
 
-StringRepository.ReadAll()
-  .then(res => {
-    console.log(`${res.length} messages read`);
-    ExtractStrings(res)
-  })
+StringRepository.ReadRandom(100000)
+  .then(res => ExtractStrings(res))
   .then(res => BuildMarkov(res))
   .then(res => markovClient = res)
   .then(res => Client.login(process.env.token));
