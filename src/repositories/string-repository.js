@@ -24,7 +24,7 @@ module.exports = {
   },
   ReadRandom: (n) => {
     return new Promise.using(GetMongoConnection(), conn => {
-      return conn.db(db).collection(col).aggregate( [ { $sample: {size: 5000} } ] ) .toArray();
+      return conn.db(db).collection(col).aggregate( [ { $sample: {size: n} } ] ) .toArray();
     });
   },
   ReadAll: () => {
