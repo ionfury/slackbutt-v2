@@ -25,7 +25,7 @@ function BuildMarkov(strings) {
   return markov;
 }
 
-StringRepository.ReadRandom(10000)
+StringRepository.ReadRandom(50000)
   .then(res => ExtractStrings(res))
   .then(res => BuildMarkov(res))
   .then(res => markovClient = res)
