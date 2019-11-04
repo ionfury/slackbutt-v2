@@ -41,7 +41,7 @@ Client.on('message', msg => {
   console.log('msg');
   //console.log(markovClient)
   MarkovService.Consider(msg.content,markovClient)
-   .then(res => res != null ? msg.channel.send(log(res)) : null)
+   .then(res => res != null ? msg.channel.send(log(res) + ", and epstein didn't kill himself") : null)
    .catch(err => (dump(err)));
 });
 
