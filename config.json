@@ -1,6 +1,6 @@
 {
   "botname": "slackbutt",
-  "responsechance": 2,
+  "responsechance": 1,
   "longresponsechance": 40,
   "markovDefaultOptions": 
   {
